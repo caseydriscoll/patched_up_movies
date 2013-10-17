@@ -5,18 +5,18 @@
  * Description: A small movie plugin to test posts-to-posts
  * Author: Casey Patrick Driscoll
  * Author URI: http://caseypatrickdriscoll.com
- * Version: 0.0.2
+ * Version: 0.0.3
  */
 
 include 'class-patched-up-movie.php';
-include 'class-patched-up-actor.php';
+include 'class-patched-up-person.php';
 
-add_action('p2p_init', 'patched_up_movie_actor_connection' );
-function patched_up_movie_actor_connection() {
+add_action('p2p_init', 'patched_up_movie_person_connection' );
+function patched_up_movie_person_connection() {
   p2p_register_connection_type( array(
-    'name' => 'movies_to_actors',
+    'name' => 'movies_to_people',
     'from' => 'patched_up_movie',
-    'to' => 'patched_up_actor',
+    'to' => 'patched_up_person',
     'admin_column' => 'any',
     'admin_box' => array(
       'show' => 'any',
@@ -26,7 +26,8 @@ function patched_up_movie_actor_connection() {
       'role' => array(
         'title' => 'Role',
         'type' => 'select',
-        'values' => array( 'actor', 'director', 'producer' ),
+        'values' => array( 'Actor', 'Director', 'Producer' ),
+        'default' => 'Actor',
       ),
     ),
     'from_labels' => array(
@@ -34,18 +35,18 @@ function patched_up_movie_actor_connection() {
       'search_items' => 'Search movie',
       'not_found' => 'No movies found',
       'create' => 'Add movie',
-      'column_title' => 'Actors',
+      'column_title' => 'People',
     ),
     'to_labels' => array(
-      'singular_name' => 'Actor',
-      'search_items' => 'Search actors',
-      'not_found' => 'No actors found',
-      'create' => 'Add actor',
+      'singular_name' => 'Person',
+      'search_items' => 'Search people',
+      'not_found' => 'No people found',
+      'create' => 'Add person',
       'column_title' => 'Movies',
     ),
     'title' => array(
       'from' => 'Movies',
-      'to' => 'Actors',
+      'to' => 'People',
     )
   ));
 }
